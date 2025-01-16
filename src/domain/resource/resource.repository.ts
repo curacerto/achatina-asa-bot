@@ -1,12 +1,9 @@
-import { Injectable } from '@nestjs/common';
 import { CommonRepository } from '../common/common.repository';
 
-@Injectable()
-export class PlayerRepository {
+export class ResourceRepository {
   constructor(private readonly commonRepository: CommonRepository) {}
 
-  async listPlayers(map: string): Promise<any> {
-    const commands = ['listplayers'];
+  async spawnItem(map: string, commands: string[]): Promise<any> {
     return this.commonRepository.execute(map, commands);
   }
 }
