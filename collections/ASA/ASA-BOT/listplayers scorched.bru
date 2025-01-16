@@ -1,0 +1,26 @@
+meta {
+  name: listplayers scorched
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://asa-bot.info/api/public/command/execute
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: BOT c10417be-c528-477d-8e5d-138c5cf95133
+}
+
+body:json {
+  {
+    "host": "31.214.159.146",
+    "rconPort": 11180,
+    "expectResult": true,
+    "commands": [
+      "listplayers"
+    ]
+  }
+}

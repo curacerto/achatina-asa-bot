@@ -1,0 +1,19 @@
+meta {
+  name: listplayers TC
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/player?map=TC
+  body: none
+  auth: none
+}
+
+params:query {
+  map: TC
+}
+
+headers {
+  x-api-key: 38fb1dee5c56ae443ed502e225d7939eab5175e31974229c77fac5ff6a54b5f8
+}

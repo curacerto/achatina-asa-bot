@@ -1,0 +1,26 @@
+meta {
+  name: listplayers extinction
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://asa-bot.info/api/public/command/execute
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: BOT c10417be-c528-477d-8e5d-138c5cf95133
+}
+
+body:json {
+  {
+    "host": "128.1.234.28",
+    "rconPort": 11030,
+    "expectResult": true,
+    "commands": [
+      "listplayers"
+    ]
+  }
+}
