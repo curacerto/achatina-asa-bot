@@ -1,0 +1,26 @@
+meta {
+  name: element extinction
+  type: http
+  seq: 7
+}
+
+post {
+  url: https://asa-bot.info/api/public/command/execute
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: BOT c10417be-c528-477d-8e5d-138c5cf95133
+}
+
+body:json {
+  {
+    "host": "128.1.234.28",
+    "rconPort": 11030,
+    "expectResult": true,
+    "commands": [
+      "scriptcommand asabot spawnitem 0002f354359348abbcd0d6bd2e2661ce '/Game/PrimalEarth/CoreBlueprints/Resources/PrimalItemResource_Element.PrimalItemResource_Element' quantity=1000"
+    ]
+  }
+}
