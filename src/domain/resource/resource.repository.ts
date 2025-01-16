@@ -1,5 +1,7 @@
 import { CommonRepository } from '../common/common.repository';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class ResourceRepository {
   constructor(private readonly commonRepository: CommonRepository) {}
 

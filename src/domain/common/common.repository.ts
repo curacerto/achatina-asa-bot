@@ -20,7 +20,7 @@ export class CommonRepository {
       host: host,
       rconPort: port,
       expectResult: true,
-      commands: [commands],
+      commands: commands,
     };
     const response = await firstValueFrom(
       this.httpService.post(`${this.apiUrl}/command/execute`, body),

@@ -1,0 +1,24 @@
+meta {
+  name: spawnitem elemento
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:3001/resource/spawn-item
+  body: json
+  auth: none
+}
+
+headers {
+  x-api-key: 38fb1dee5c56ae443ed502e225d7939eab5175e31974229c77fac5ff6a54b5f8
+}
+
+body:json {
+  {
+    "map": "SE",
+    "eosId": "00026a77b7e440ca8b66bc04bc2188e3",
+    "blueprint": "Blueprint'/Game/PrimalEarth/CoreBlueprints/Resources/PrimalItemResource_Element.PrimalItemResource_Element'",
+    "quantity": 1000
+  }
+}

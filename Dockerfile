@@ -16,6 +16,9 @@ COPY . .
 # Build the NestJS application
 RUN npm run build
 
+# Ensure the dist directory exists
+RUN ls -la /app/dist
+
 # Expose the port the app runs on
 EXPOSE 3001
 

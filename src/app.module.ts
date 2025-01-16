@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PlayerModule } from './domain/player/player.module';
 import { AxiosInterceptor } from './infrastructure/interceptor/axios.interceptor';
 import { HttpModule } from '@nestjs/axios';
+import { ResourceModule } from './domain/resource/resource.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { HttpModule } from '@nestjs/axios';
       isGlobal: true, // makes the module globally available
     }),
     PlayerModule,
+    ResourceModule,
     HttpModule, // Import HttpModule here
   ],
   controllers: [AppController],

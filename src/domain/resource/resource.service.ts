@@ -1,5 +1,7 @@
 import { ResourceRepository } from './resource.repository';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class ResourceService {
   constructor(private readonly resourceRepository: ResourceRepository) {}
 
@@ -11,7 +13,7 @@ export class ResourceService {
   ): Promise<any> {
     const resourceBlueprint = blueprint.split("'")[1];
     const commands = [
-      `scriptcommand asabot spawnitem ${eosId} ${resourceBlueprint} quantity=${quantity}`,
+      `scriptcommand asabot spawnitem ${eosId} '${resourceBlueprint}' quantity=${quantity}`,
     ];
     const response = await this.resourceRepository.spawnItem(map, commands);
     if (response.startsWith('Spawnitem command successful.')) {

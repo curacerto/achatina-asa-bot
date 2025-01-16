@@ -2,12 +2,12 @@ import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiKeyGuard } from '../../infrastructure/guard/api-key.guard';
 import { ResourceService } from './resource.service';
 
-@Controller('player')
+@Controller('resource')
 @UseGuards(ApiKeyGuard)
 export class ResourceController {
   constructor(private readonly resourceService: ResourceService) {}
 
-  @Post()
+  @Post('spawn-item')
   async spawnItem(
     @Body('map') map: string,
     @Body('eosId') eosId: string,
