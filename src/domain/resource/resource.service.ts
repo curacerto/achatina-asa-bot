@@ -13,6 +13,11 @@ export class ResourceService {
     const commands = [
       `scriptcommand asabot spawnitem ${eosId} ${resourceBlueprint} quantity=${quantity}`,
     ];
-    return this.resourceRepository.spawnItem(map, commands);
+    const response = await this.resourceRepository.spawnItem(map, commands);
+    if (response.startsWith('Spawnitem command successful.')) {
+      return { result: 'ok' };
+    } else {
+      return { result: 'error' };
+    }
   }
 }
