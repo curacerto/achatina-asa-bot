@@ -13,11 +13,11 @@ export class ResourceService {
   ): Promise<any> {
     console.log('Spawn item ', map, eosId, quantity, blueprint);
     let resourceBlueprint = blueprint;
-    if (!blueprint.startsWith('Blueprint')) {
+    if (!blueprint && blueprint.startsWith('Blueprint')) {
       resourceBlueprint = blueprint.split("'")[1];
     }
     const commands = [
-      `scriptcommand asabot spawnitem ${eosId} '${resourceBlueprint}' quantity=${quantity}`,
+      `scriptcommand asabot spawnitem ${eosId} ''${resourceBlueprint}'' quantity=${quantity}`,
     ];
     const response: [] = await this.resourceRepository.spawnItem(map, commands);
     console.log(response);

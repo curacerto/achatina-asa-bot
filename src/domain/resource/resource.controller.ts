@@ -11,8 +11,8 @@ export class ResourceController {
   async spawnItem(
     @Body('map') map: string,
     @Body('eosId') eosId: string,
-    @Body('quantity') quantity: number,
     @Body('blueprint') blueprint: string,
+    @Body('quantity') quantity: number,
   ): Promise<any> {
     return this.resourceService.spawnItem(map, eosId, quantity, blueprint);
   }

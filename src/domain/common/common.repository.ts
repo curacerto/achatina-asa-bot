@@ -2,6 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { Injectable } from '@nestjs/common';
+import { MapEnumerator } from '../map/constant/map.enumerator';
 
 @Injectable()
 export class CommonRepository {
@@ -29,7 +30,7 @@ export class CommonRepository {
   }
 
   getMapHostsAndPorts(): { [key: string]: { host: string; port: number } } {
-    const maps = ['TI', 'SE', 'TC', 'AB', 'CA', 'EX'];
+    const maps = MapEnumerator.mapArray;
     const result: { [key: string]: { host: string; port: number } } = {};
 
     maps.forEach((map) => {
