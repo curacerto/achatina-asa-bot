@@ -15,4 +15,13 @@ export class DinosaurController {
   ): Promise<any> {
     return this.dinosaurService.spawnDinosaur(map, eosId, blueprint);
   }
+
+  @Post('spawn-saddle')
+  async spawnSaddle(
+    @Body('map') map: string,
+    @Body('eosId') eosId: string,
+    @Body('blueprint') blueprint: string,
+  ): Promise<any> {
+    return this.dinosaurService.spawnSaddle(map, eosId, blueprint);
+  }
 }
