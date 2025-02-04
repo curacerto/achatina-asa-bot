@@ -41,8 +41,9 @@ export class DinosaurService {
     map: string,
     eosId: string,
     blueprint: string,
+    isBlueprint: boolean,
   ): Promise<any> {
-    console.log('Spawn saddle ', map, eosId, blueprint);
+    console.log('Spawn saddle ', map, eosId, blueprint, isBlueprint);
     let saddleBlueprint = blueprint;
     if (!blueprint && blueprint.startsWith('Blueprint')) {
       saddleBlueprint = blueprint.split("'")[1];
@@ -50,8 +51,9 @@ export class DinosaurService {
     const seed = Date.now();
     seedrandom(seed.toString(), { global: true });
     const armor = (Math.random() * (352.68 - 100.0) + 100.0).toFixed(2);
+    const blueprintString = isBlueprint ? ' blueprint=true' : '';
     const commands = [
-      `scriptcommand asabot spawnitem ${eosId} ''${saddleBlueprint}'' quantity=1 quality=ascendant armor=${armor}`,
+      `scriptcommand asabot spawnitem ${eosId} ''${saddleBlueprint}'' quantity=1 quality=ascendant armor=${armor}${blueprintString}`,
     ];
     const response: [] = await this.dinosaurRepository.spawnCommand(
       map,

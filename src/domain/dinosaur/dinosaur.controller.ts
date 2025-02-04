@@ -21,7 +21,8 @@ export class DinosaurController {
     @Body('map') map: string,
     @Body('eosId') eosId: string,
     @Body('blueprint') blueprint: string,
+    @Body('isBlueprint') isBlueprint: boolean,
   ): Promise<any> {
-    return this.dinosaurService.spawnSaddle(map, eosId, blueprint);
+    return this.dinosaurService.spawnSaddle(map, eosId, blueprint, isBlueprint);
   }
 }
