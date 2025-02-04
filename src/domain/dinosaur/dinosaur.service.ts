@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DinosaurRepository } from './dinosaur.repository';
-import seedrandom from 'seedrandom';
+import * as seedrandom from 'seedrandom';
 
 @Injectable()
 export class DinosaurService {
@@ -48,7 +48,7 @@ export class DinosaurService {
       saddleBlueprint = blueprint.split("'")[1];
     }
     const seed = Date.now();
-    seedrandom(seed, { global: true });
+    seedrandom(seed.toString(), { global: true });
     const armor = (Math.random() * (352.68 - 100.0) + 100.0).toFixed(2);
     const commands = [
       `scriptcommand asabot spawnitem ${eosId} ''${saddleBlueprint}'' quantity=1 quality=ascendant armor=${armor}`,
