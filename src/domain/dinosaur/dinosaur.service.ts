@@ -54,9 +54,11 @@ export class DinosaurService {
     const maxArmor = isDreadnoughtSaddle ? 188.84 : 352.68;
     const minArmor = isDreadnoughtSaddle ? 75.0 : 100.0;
     const armor = (Math.random() * (maxArmor - minArmor) + minArmor).toFixed(2);
+    const durability = Math.random() * (1737 - 100) + 100;
     const blueprintString = isBlueprint ? ' blueprint=true' : '';
+    const rating = Math.random() * 50;
     const commands = [
-      `scriptcommand asabot spawnitem ${eosId} ''${saddleBlueprint}'' quantity=1 quality=ascendant armor=${armor}${blueprintString}`,
+      `scriptcommand asabot spawnitem ${eosId} ''${saddleBlueprint}'' quantity=1 quality=ascendant armor=${armor}${blueprintString} durability=${durability} rating=${rating}`,
     ];
     const response: [] = await this.dinosaurRepository.spawnCommand(
       map,
