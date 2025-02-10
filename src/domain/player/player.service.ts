@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PlayerRepository } from './player.repository';
+import { PlayerEntity } from './player.entity';
 
 @Injectable()
 export class PlayerService {
@@ -21,5 +22,15 @@ export class PlayerService {
         resolve(playerList);
       });
     });
+  }
+
+  async getPlayerByDiscordId(discordId: string): Promise<PlayerEntity> {
+    const response =
+      await this.playerRepository.getPlayerByDiscordId(discordId);
+    const playerEntity: PlayerEntity = new PlayerEntity();
+    playerEntity.id = response.discordId === discordId ? discordId : null;
+    playerEntity.name = response.discordUsername;
+    playerEntity.eos_id = response.netId;
+    return playerEntity;
   }
 }
