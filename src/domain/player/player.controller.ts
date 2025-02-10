@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
 import { PlayerService } from './player.service';
 import { ApiKeyGuard } from '../../infrastructure/guard/api-key.guard';
 import { PlayerEntity } from './player.entity';
@@ -15,7 +15,7 @@ export class PlayerController {
 
   @Get('discord/:discordId')
   async getPlayerByDiscordId(
-    @Query('discordId') discordId: string,
+    @Param('discordId') discordId: string,
   ): Promise<PlayerEntity> {
     return this.playerService.getPlayerByDiscordId(discordId);
   }
