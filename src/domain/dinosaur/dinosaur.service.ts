@@ -50,7 +50,10 @@ export class DinosaurService {
     }
     const seed = Date.now();
     seedrandom(seed.toString(), { global: true });
-    const armor = (Math.random() * (352.68 - 100.0) + 100.0).toFixed(2);
+    const isDreadnoughtSaddle = blueprint.includes('Dreadnoughtus');
+    const maxArmor = isDreadnoughtSaddle ? 188.84 : 352.68;
+    const minArmor = isDreadnoughtSaddle ? 75.0 : 100.0;
+    const armor = (Math.random() * (maxArmor - minArmor) + minArmor).toFixed(2);
     const blueprintString = isBlueprint ? ' blueprint=true' : '';
     const commands = [
       `scriptcommand asabot spawnitem ${eosId} ''${saddleBlueprint}'' quantity=1 quality=ascendant armor=${armor}${blueprintString}`,
