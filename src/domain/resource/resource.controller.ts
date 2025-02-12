@@ -7,8 +7,8 @@ import { ResourceService } from './resource.service';
 export class ResourceController {
   constructor(private readonly resourceService: ResourceService) {}
 
-  @Post('spawn-item')
-  async spawnItem(
+  @Post('spawn-resource')
+  async spawnResource(
     @Body('map') map: string,
     @Body('eosId') eosId: string,
     @Body('blueprint') blueprint: string,
