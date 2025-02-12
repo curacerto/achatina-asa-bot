@@ -2,7 +2,7 @@ import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiKeyGuard } from '../../infrastructure/guard/api-key.guard';
 import { ItemService } from './item.service';
 
-@Controller('dinosaur')
+@Controller('item')
 @UseGuards(ApiKeyGuard)
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
