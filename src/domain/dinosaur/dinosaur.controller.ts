@@ -8,7 +8,7 @@ export class DinosaurController {
   constructor(private readonly dinosaurService: DinosaurService) {}
 
   @Post('spawn-dino')
-  async spawnItem(
+  async spawnDino(
     @Body('map') map: string,
     @Body('eosId') eosId: string,
     @Body('blueprint') blueprint: string,

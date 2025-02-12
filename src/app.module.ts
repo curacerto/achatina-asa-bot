@@ -7,6 +7,7 @@ import { AxiosInterceptor } from './infrastructure/interceptor/axios.interceptor
 import { HttpModule } from '@nestjs/axios';
 import { ResourceModule } from './domain/resource/resource.module';
 import { DinosaurModule } from './domain/dinosaur/dinosaur.module';
+import { ItemModule } from './domain/item/item.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { DinosaurModule } from './domain/dinosaur/dinosaur.module';
     PlayerModule,
     ResourceModule,
     DinosaurModule,
+    ItemModule,
     HttpModule, // Import HttpModule here
   ],
   controllers: [AppController],
