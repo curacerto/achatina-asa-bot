@@ -7,6 +7,7 @@ export class MapEnumerator {
     EXTINCTION: 'EX',
     CLUB_ARK: 'CA',
     SVARTALFHEIM: 'SV',
+    ASTRAEOS: 'AS',
   };
 
   static mapArray = [
@@ -17,5 +18,6 @@ export class MapEnumerator {
     MapEnumerator.maps.EXTINCTION,
     MapEnumerator.maps.CLUB_ARK,
     MapEnumerator.maps.SVARTALFHEIM,
+    MapEnumerator.maps.ASTRAEOS,
   ];
 }
