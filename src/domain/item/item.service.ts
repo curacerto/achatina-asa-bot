@@ -22,7 +22,7 @@ export class ItemService {
     const damage = Math.random() * (755 - 100) + 100;
     const durability = Math.random() * (1737 - 100) + 100;
     const blueprintString = isBlueprint ? ' blueprint=true' : '';
-    const rating = Math.random() * (50 - 25) + 25;
+    const rating = 50;
     const commands = [
       `scriptcommand asabot spawnitem ${eosId} ''${itemBlueprint}'' quantity=1 quality=ascendant damage=${damage}${blueprintString} durability=${durability} rating=${rating}`,
     ];
