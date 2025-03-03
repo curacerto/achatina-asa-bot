@@ -30,11 +30,11 @@ export class ItemService {
     const seed = Date.now();
     seedrandom(seed.toString(), { global: true });
     const damage = Math.random() * (755 - 100) + 100;
-    const maxArmor = item.includes('flak') ? 1737 : 500;
+    const maxArmor = item.includes('flak') ? 1410 : 500;
     const armor = Math.random() * (maxArmor - 500) + 500;
-    const durability = Math.random() * (1737 - 100) + 100;
+    const durability = Math.random() * (2086 - 1000) + 1000;
     const blueprintString = isBlueprint ? ' blueprint=true' : '';
-    const rating = 50;
+    const rating = Math.random() * (2000 - 1000) + 1000;
     const weaponCommands = `damage=${damage}${blueprintString} durability=${durability} rating=${rating}`;
     const armorCommands = `armor=${armor}${blueprintString} durability=${durability} rating=${rating}`;
     const extraCommands =
