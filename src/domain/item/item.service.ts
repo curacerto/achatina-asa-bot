@@ -11,8 +11,18 @@ export class ItemService {
     eosId: string,
     blueprint: string,
     isBlueprint: boolean,
+    category: string,
+    item: string,
   ): Promise<any> {
-    console.log('Spawn item ', map, eosId, blueprint, isBlueprint);
+    console.log(
+      'Spawn item ',
+      map,
+      eosId,
+      blueprint,
+      isBlueprint,
+      category,
+      item,
+    );
     let itemBlueprint = blueprint;
     if (!blueprint && blueprint.startsWith('Blueprint')) {
       itemBlueprint = blueprint.split("'")[1];
@@ -20,11 +30,17 @@ export class ItemService {
     const seed = Date.now();
     seedrandom(seed.toString(), { global: true });
     const damage = Math.random() * (755 - 100) + 100;
+    const maxArmor = item.includes('flak') ? 1737 : 500;
+    const armor = Math.random() * (maxArmor - 500) + 500;
     const durability = Math.random() * (1737 - 100) + 100;
     const blueprintString = isBlueprint ? ' blueprint=true' : '';
     const rating = 50;
+    const weaponCommands = `damage=${damage}${blueprintString} durability=${durability} rating=${rating}`;
+    const armorCommands = `armor=${armor}${blueprintString} durability=${durability} rating=${rating}`;
+    const extraCommands =
+      category === 'weapons' ? weaponCommands : armorCommands;
     const commands = [
-      `scriptcommand asabot spawnitem ${eosId} ''${itemBlueprint}'' quantity=1 quality=ascendant damage=${damage}${blueprintString} durability=${durability} rating=${rating}`,
+      `scriptcommand asabot spawnitem ${eosId} ''${itemBlueprint}'' quantity=1 quality=ascendant ${extraCommands}`,
     ];
     const response: [] = await this.itemRepository.spawnCommand(map, commands);
     console.log(response);

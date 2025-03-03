@@ -13,7 +13,16 @@ export class ItemController {
     @Body('eosId') eosId: string,
     @Body('blueprint') blueprint: string,
     @Body('isBlueprint') isBlueprint: boolean,
+    @Body('category') category: string,
+    @Body('item') item: string,
   ): Promise<any> {
-    return this.itemService.spawnItem(map, eosId, blueprint, isBlueprint);
+    return this.itemService.spawnItem(
+      map,
+      eosId,
+      blueprint,
+      isBlueprint,
+      category,
+      item,
+    );
   }
 }
