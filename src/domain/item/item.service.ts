@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as seedrandom from 'seedrandom';
 import { ItemRepository } from './item.repository';
+import { ArmorMaximumsEnumerator } from './constant/armor-maximums.enumerator';
 
 @Injectable()
 export class ItemService {
@@ -30,9 +31,22 @@ export class ItemService {
     const seed = Date.now();
     seedrandom(seed.toString(), { global: true });
     const damage = Math.random() * (755 - 100) + 100;
-    const maxArmor = item.includes('flak') ? 1410 : 500;
+    let maxArmor = 500;
+    let maxDurability = 1000;
+    if (item.includes('flak')) {
+      maxArmor = ArmorMaximumsEnumerator.maximums.FLAK.armor;
+      maxDurability = ArmorMaximumsEnumerator.maximums.FLAK.durability;
+    }
+    if (item.includes('hazard')) {
+      maxArmor = ArmorMaximumsEnumerator.maximums.HAZARD_SUIT.armor;
+      maxDurability = ArmorMaximumsEnumerator.maximums.HAZARD_SUIT.durability;
+    }
+    if (item.includes('tek')) {
+      maxArmor = ArmorMaximumsEnumerator.maximums.TEK.armor;
+      maxDurability = ArmorMaximumsEnumerator.maximums.TEK.durability;
+    }
     const armor = Math.random() * (maxArmor - 500) + 500;
-    const durability = Math.random() * (2086 - 1000) + 1000;
+    const durability = Math.random() * (maxDurability - 1000) + 1000;
     const blueprintString = isBlueprint ? ' blueprint=true' : '';
     const rating = Math.random() * (2000 - 1000) + 1000;
     const weaponCommands = `damage=${damage}${blueprintString} durability=${durability} rating=${rating}`;
