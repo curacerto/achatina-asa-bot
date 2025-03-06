@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import * as seedrandom from 'seedrandom';
 import { ItemRepository } from './item.repository';
-import { ArmorMaximumsEnumerator } from './constant/armor-maximums.enumerator';
+import { ItemMaximumsService } from './item-maximums.service';
+import { ItemCategoryEnumerator } from './constant/item-category.enumerator';
 
 @Injectable()
 export class ItemService {
-  constructor(private readonly itemRepository: ItemRepository) {}
+  constructor(
+    private readonly itemRepository: ItemRepository,
+    private readonly itemMaximumsService: ItemMaximumsService,
+  ) {}
 
   async spawnItem(
     map: string,
@@ -25,44 +28,44 @@ export class ItemService {
       item,
     );
     let itemBlueprint = blueprint;
-    if (!blueprint && blueprint.startsWith('Blueprint')) {
+    if (blueprint && blueprint.startsWith('Blueprint')) {
       itemBlueprint = blueprint.split("'")[1];
     }
-    const seed = Date.now();
-    seedrandom(seed.toString(), { global: true });
-    const damage = Math.random() * (755 - 100) + 100;
-    let maxArmor = 500;
-    let maxDurability = 1000;
-    if (item.includes('flak')) {
-      maxArmor = ArmorMaximumsEnumerator.maximums.FLAK.armor;
-      maxDurability = ArmorMaximumsEnumerator.maximums.FLAK.durability;
-    }
-    if (item.includes('hazard')) {
-      maxArmor = ArmorMaximumsEnumerator.maximums.HAZARD_SUIT.armor;
-      maxDurability = ArmorMaximumsEnumerator.maximums.HAZARD_SUIT.durability;
-    }
-    if (item.includes('tek')) {
-      maxArmor = ArmorMaximumsEnumerator.maximums.TEK.armor;
-      maxDurability = ArmorMaximumsEnumerator.maximums.TEK.durability;
-    }
-    const armor = Math.random() * (maxArmor - 500) + 500;
-    const durability = Math.random() * (maxDurability - 1000) + 1000;
+    const itemMaximums = this.itemMaximumsService.getItemMaximums(
+      category,
+      item,
+    );
+    const damage = this.itemMaximumsService.getRandomDamage(itemMaximums);
+    const armor = this.itemMaximumsService.getRandomArmor(itemMaximums);
+    const durability =
+      this.itemMaximumsService.getRandomDurability(itemMaximums);
+    const rating = this.itemMaximumsService.getRandomRating(itemMaximums);
+
     const blueprintString = isBlueprint ? ' blueprint=true' : '';
-    const rating = Math.random() * (2000 - 1000) + 1000;
     const weaponCommands = `damage=${damage}${blueprintString} durability=${durability} rating=${rating}`;
     const armorCommands = `armor=${armor}${blueprintString} durability=${durability} rating=${rating}`;
     const extraCommands =
-      category === 'weapons' ? weaponCommands : armorCommands;
+      ItemCategoryEnumerator.WEAPON === category
+        ? weaponCommands
+        : armorCommands;
+    console.log(
+      `scriptcommand asabot spawnitem ${eosId} ''${itemBlueprint}'' quantity=1 quality=ascendant ${extraCommands}`,
+    );
     const commands = [
       `scriptcommand asabot spawnitem ${eosId} ''${itemBlueprint}'' quantity=1 quality=ascendant ${extraCommands}`,
     ];
+
     const response: [] = await this.itemRepository.spawnCommand(map, commands);
+
     console.log(response);
     const mappedResponse: { result: string }[] = [];
     response.forEach((rsp: string) => {
-      let result: { result: string };
+      let result: { result: string; commands?: string[] };
       if (rsp.startsWith('Spawn item command successful.')) {
-        result = { result: 'ok' };
+        result = {
+          result: 'ok',
+          commands: commands,
+        };
       } else {
         result = { result: 'error' };
       }
