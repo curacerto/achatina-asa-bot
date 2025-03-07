@@ -14,6 +14,6 @@ export class ResourceController {
     @Body('blueprint') blueprint: string,
     @Body('quantity') quantity: number,
   ): Promise<any> {
-    return this.resourceService.spawnItem(map, eosId, quantity, blueprint);
+    return this.resourceService.spawnItem(map, eosId, blueprint, quantity);
   }
 }

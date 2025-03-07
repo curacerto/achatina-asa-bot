@@ -13,7 +13,7 @@ export class DinosaurService {
   ): Promise<any> {
     console.log('Spawn dinosaur ', map, eosId, blueprint);
     let dinosaurBlueprint = blueprint;
-    if (!blueprint && blueprint.startsWith('Blueprint')) {
+    if (blueprint && blueprint.startsWith('Blueprint')) {
       dinosaurBlueprint = blueprint.split("'")[1];
     }
     const commands = [
@@ -45,7 +45,7 @@ export class DinosaurService {
   ): Promise<any> {
     console.log('Spawn saddle ', map, eosId, blueprint, isBlueprint);
     let saddleBlueprint = blueprint;
-    if (!blueprint && blueprint.startsWith('Blueprint')) {
+    if (blueprint && blueprint.startsWith('Blueprint')) {
       saddleBlueprint = blueprint.split("'")[1];
     }
     const seed = Date.now();

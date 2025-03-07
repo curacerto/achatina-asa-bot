@@ -8,10 +8,10 @@ export class ResourceService {
   async spawnItem(
     map: string,
     eosId: string,
-    quantity: number,
     blueprint: string,
+    quantity: number,
   ): Promise<any> {
-    console.log('Spawn item ', map, eosId, quantity, blueprint);
+    console.log('Spawn item ', map, eosId, blueprint, quantity);
     let resourceBlueprint = blueprint;
     if (!blueprint && blueprint.startsWith('Blueprint')) {
       resourceBlueprint = blueprint.split("'")[1];
