@@ -28,6 +28,7 @@ export class ItemService {
       item,
     );
     let itemBlueprint = blueprint;
+    category = category.toLowerCase();
     if (blueprint && blueprint.startsWith('Blueprint')) {
       itemBlueprint = blueprint.split("'")[1];
     }
