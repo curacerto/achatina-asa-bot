@@ -43,6 +43,14 @@ describe('ItemMaximumsService', () => {
       expect(result).toEqual(new ItemMaximums(1500, 1949.47, 0, 2000));
     });
 
+    it('should return correct maximums for riot armor', () => {
+      const result = service.getItemMaximums(
+        ItemCategoryEnumerator.ARMOR,
+        'riot',
+      );
+      expect(result).toEqual(new ItemMaximums(1500, 1949.47, 0, 2000));
+    });
+
     it('should return correct maximums for weapon', () => {
       const result = service.getItemMaximums(
         ItemCategoryEnumerator.WEAPON,

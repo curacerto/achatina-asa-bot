@@ -51,6 +51,14 @@ export class ItemMaximumsService {
           this.maxRating,
         );
       }
+      if (name.includes('riot')) {
+        itemMaximums = new ItemMaximums(
+          ArmorMaximumsEnumerator.maximums.RIOT.durability,
+          ArmorMaximumsEnumerator.maximums.RIOT.armor,
+          0,
+          this.maxRating,
+        );
+      }
     }
     if (category === ItemCategoryEnumerator.WEAPON) {
       itemMaximums = new ItemMaximums(

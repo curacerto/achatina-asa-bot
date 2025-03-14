@@ -15,5 +15,10 @@ export class ArmorMaximumsEnumerator {
       durability: 1500,
       armor: 1949.47,
     },
+    RIOT: {
+      code: 'riot',
+      durability: 2085,
+      armor: 1622.32,
+    },
   };
 }
