@@ -67,6 +67,14 @@ export class ItemMaximumsService {
           this.maxRating,
         );
       }
+      if (name.includes('gas')) {
+        itemMaximums = new ItemMaximums(
+          ArmorMaximumsEnumerator.maximums.GAS.durability,
+          ArmorMaximumsEnumerator.maximums.GAS.armor,
+          0,
+          this.maxRating,
+        );
+      }
     }
     if (category === ItemCategoryEnumerator.WEAPON) {
       itemMaximums = new ItemMaximums(

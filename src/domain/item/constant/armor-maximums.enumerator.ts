@@ -25,5 +25,10 @@ export class ArmorMaximumsEnumerator {
       durability: 781,
       armor: 0,
     },
+    GAS: {
+      code: 'gas',
+      durability: 868,
+      armor: 0,
+    },
   };
 }
