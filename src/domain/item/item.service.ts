@@ -46,7 +46,8 @@ export class ItemService {
     const weaponCommands = `damage=${damage}${blueprintString} durability=${durability} rating=${rating}`;
     const armorCommands = `armor=${armor}${blueprintString} durability=${durability} rating=${rating}`;
     const extraCommands =
-      ItemCategoryEnumerator.WEAPON === category
+      ItemCategoryEnumerator.WEAPON === category ||
+      ItemCategoryEnumerator.TOOL === category
         ? weaponCommands
         : armorCommands;
     console.log(

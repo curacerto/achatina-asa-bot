@@ -75,6 +75,14 @@ describe('ItemMaximumsService', () => {
       expect(result).toEqual(new ItemMaximums(2000, 0, 755, 2000));
     });
 
+    it('should return correct maximums for tool', () => {
+      const result = service.getItemMaximums(
+        ItemCategoryEnumerator.TOOL,
+        'metal_pick',
+      );
+      expect(result).toEqual(new ItemMaximums(2000, 0, 755, 2000));
+    });
+
     it('should return default maximums for unknown category', () => {
       const result = service.getItemMaximums('unknown', 'item');
       expect(result).toEqual(new ItemMaximums(500, 500, 100, 2000));

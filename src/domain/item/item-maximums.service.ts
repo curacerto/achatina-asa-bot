@@ -76,7 +76,10 @@ export class ItemMaximumsService {
         );
       }
     }
-    if (category === ItemCategoryEnumerator.WEAPON) {
+    if (
+      category === ItemCategoryEnumerator.WEAPON ||
+      category === ItemCategoryEnumerator.TOOL
+    ) {
       itemMaximums = new ItemMaximums(
         this.maxDurabilityDefault,
         0,
