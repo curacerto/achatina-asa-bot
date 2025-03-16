@@ -48,7 +48,15 @@ describe('ItemMaximumsService', () => {
         ItemCategoryEnumerator.ARMOR,
         'riot',
       );
-      expect(result).toEqual(new ItemMaximums(1500, 1949.47, 0, 2000));
+      expect(result).toEqual(new ItemMaximums(2085, 1622.32, 0, 2000));
+    });
+
+    it('should return correct maximums for scuba armor', () => {
+      const result = service.getItemMaximums(
+        ItemCategoryEnumerator.ARMOR,
+        'scuba',
+      );
+      expect(result).toEqual(new ItemMaximums(781, 0, 0, 2000));
     });
 
     it('should return correct maximums for weapon', () => {
@@ -61,7 +69,7 @@ describe('ItemMaximumsService', () => {
 
     it('should return default maximums for unknown category', () => {
       const result = service.getItemMaximums('unknown', 'item');
-      expect(result).toEqual(new ItemMaximums(1000, 500, 100, 2000));
+      expect(result).toEqual(new ItemMaximums(500, 500, 100, 2000));
     });
 
     it('should return correct maximums for fabricated_sniper_rifle', () => {

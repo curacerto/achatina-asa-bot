@@ -11,7 +11,7 @@ export class ItemMaximumsService {
   private readonly maxDamage: number = 755;
   private readonly minDamage: number = 100;
   private readonly maxDurabilityDefault: number = 2000;
-  private readonly minDurabilityDefault: number = 1000;
+  private readonly minDurabilityDefault: number = 500;
   private readonly minArmorDefault: number = 500;
 
   constructor() {
@@ -59,6 +59,14 @@ export class ItemMaximumsService {
           this.maxRating,
         );
       }
+      if (name.includes('scuba')) {
+        itemMaximums = new ItemMaximums(
+          ArmorMaximumsEnumerator.maximums.SCUBA.durability,
+          ArmorMaximumsEnumerator.maximums.SCUBA.armor,
+          0,
+          this.maxRating,
+        );
+      }
     }
     if (category === ItemCategoryEnumerator.WEAPON) {
       itemMaximums = new ItemMaximums(
@@ -72,6 +80,12 @@ export class ItemMaximumsService {
   }
 
   public getRandomDurability(itemMaximums: ItemMaximums): number {
+    if (itemMaximums.getDurability() === 0) {
+      return 0;
+    }
+    if (itemMaximums.getDurability() <= this.minDurabilityDefault) {
+      return this.minDurabilityDefault;
+    }
     return (
       Math.random() *
         (itemMaximums.getDurability() - this.minDurabilityDefault) +
@@ -80,6 +94,12 @@ export class ItemMaximumsService {
   }
 
   public getRandomArmor(itemMaximums: ItemMaximums): number {
+    if (itemMaximums.getArmor() === 0) {
+      return 0;
+    }
+    if (itemMaximums.getArmor() <= this.minArmorDefault) {
+      return this.minArmorDefault;
+    }
     return (
       Math.random() * (itemMaximums.getArmor() - this.minArmorDefault) +
       this.minArmorDefault
@@ -94,6 +114,12 @@ export class ItemMaximumsService {
   }
 
   public getRandomDamage(itemMaximums: ItemMaximums): number {
+    if (itemMaximums.getDamage() === 0) {
+      return 0;
+    }
+    if (itemMaximums.getDamage() <= this.minDamage) {
+      return this.minDamage;
+    }
     return (
       Math.random() * (itemMaximums.getDamage() - this.minDamage) +
       this.minDamage

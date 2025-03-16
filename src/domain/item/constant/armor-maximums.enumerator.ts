@@ -20,5 +20,10 @@ export class ArmorMaximumsEnumerator {
       durability: 2085,
       armor: 1622.32,
     },
+    SCUBA: {
+      code: 'scuba',
+      durability: 781,
+      armor: 0,
+    },
   };
 }
